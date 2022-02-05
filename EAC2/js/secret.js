@@ -336,9 +336,9 @@ function creaArray(){
 	//Asignamos el evento de subir la barra cuando se pulsa el botón - JQuery
 	function asignarArriba(elem){
 		elem.on('click',function(){
-			let $aquestaBarra = $(this).parents('.intent');
-			let $barraArriba = $aquestaBarra.prev();
-			$aquestaBarra.insertBefore($barraArriba);
+			let $estaBarra = $(this).parents('.intent');
+			let $barraArriba = $estaBarra.prev();
+			$estaBarra.insertBefore($barraArriba);
 		});
 	}
 
@@ -348,11 +348,11 @@ function creaArray(){
 	//Asignamos el evento de bajar la barra cuando se pulsa el botón - JS
 	function asignarAbajo(elem){
 		elem.addEventListener('click', function(){
-			let aquestaBarra = this.parentNode.parentNode;
+			let estaBarra = this.parentNode.parentNode;
 			//Si no es el último elemento
-			if(aquestaBarra.nextElementSibling){
-				let barraDeBaix = aquestaBarra.nextElementSibling;
-				aquestaBarra.parentNode.insertBefore(aquestaBarra,barraDeBaix.nextElementSibling);
+			if(estaBarra.nextElementSibling){
+				let barraDeBaix = estaBarra.nextElementSibling;
+				estaBarra.parentNode.insertBefore(estaBarra,barraDeBaix.nextElementSibling);
 			}
 		});
 	}
@@ -366,9 +366,9 @@ function creaArray(){
 	}
 
 	function esconder(){
-		let $aquestaBarra = $(this).parents('.intent');
+		let $estaBarra = $(this).parents('.intent');
 		//Escondemos los hijos de los div que contiene la barra
-		$aquestaBarra.children().children().hide();
+		$estaBarra.children().children().hide();
 		//Cambiamos su clase y así nos cambia el dibujo a [+]
 		$(this).attr('class','fas fa-plus-square');
 		//Mostramos solamente ese elemento
@@ -378,7 +378,7 @@ function creaArray(){
 		//Le añadimos el nuevo evento - JScript
 		$(this).get(0).addEventListener('click',mostrar);
 
-		// let aquestaBarra = this.parents;
+		// let estaBarra = this.parents;
 		// let estaB = this.document.getElementsByClassName("intent")[0];
 		// //Escondemos los hijos de los div que contiene la barra
 		// //estaB.style.visibility = "hidden";
@@ -398,15 +398,15 @@ function creaArray(){
 	/**********************/
 	//Asignamos el evento en la función esconder() - JavaScript
 	function mostrar(){
-		let aquestaBarra = this.parentNode.parentNode;
-		let hijos = aquestaBarra.children.length;
+		let estaBarra = this.parentNode.parentNode;
+		let hijos = estaBarra.children.length;
 
 		//Para cada <div>, mostraremos sus hijos
 		//Como hemos usado .hide() de jQuery, cambiamos la propiedat 'display = none' de ellos
 		for(let i=0; i<hijos;i++){
-			let hijosBarra = aquestaBarra.children[i].children.length;
+			let hijosBarra = estaBarra.children[i].children.length;
 				for(let j=0; j<hijosBarra;j++){
-					aquestaBarra.children[i].children[j].style.display='inline';
+					estaBarra.children[i].children[j].style.display='inline';
 				}
 		}
 
