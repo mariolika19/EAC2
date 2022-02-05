@@ -1,0 +1,57 @@
+<html lang="es">
+<meta charset = "UTF-8" />
+<head>
+	<title>EAC1 - Formulari</title>
+	<link rel="stylesheet" type="text/css" href="css/formulari.css">
+	<script type="text/javascript" src="js/formulari.js"></script>
+
+</head>
+
+<br>
+<br>
+	<div id="imatge"></div>
+	<h2>Formulari</h2>
+	<form action="marcador.html" method="POST">
+	
+		<button id="botonCheck">Compruebe sus datos</button><br>
+
+		<label for="nom">Nom:</label>
+		<input type="text" id="nom" name="nom" placeholder="Escribe el teu nom..." required/>
+		
+		<!-- Continueu amb al formulari a partir d'aquí -->
+		<br>
+		
+		<!-- Caja de texto cognoms -->
+		<label for="cognoms">Cognoms:</label>
+		<input type="text" id="cognoms" name="cognoms" placeholder="Escribe tus apellidos..." ><br>
+
+		<!-- Caja numérica edat -->
+		<label for="edat">Edat:</label>
+		<input type="number" id="edat" name="edat" placeholder="Escribe tu edad..." required min="18" max="100">
+		<br/>
+
+		<!-- Caja de texto DNI -->
+		<label for="dni">DNI:</label>
+		<input type="text" id="dni" name="dni" placeholder="Escribe tu DNI..."  title="Introduzca un valor DNI válido" required pattern="[0-9]{8}[-][A-Za-z]{1}"></form>
+		</br>
+
+		<!-- Caja de texto email -->
+		<label for="correu">E-mail:</label>
+		<input type="email" name="correu" id="correu" placeholder="Escribe tu E-mail..."><br/>
+
+		<!-- Caja de texto ccódigo -->
+		<label for="codi">Password:</label>
+		<input type="text" name="codi" id="codi" placeholder="Escribe tu password..."><br/><br/>
+		
+		<br>
+		<!-- Caja de texto enviar-->
+		<input type="submit" id="enviar" value="Enviar!" onclick="comprueba()"></input><br/>
+
+		<!-- Caja de texto borrar todo-->
+		<input type="submit" id="borrar" value="Borrar todo" onclick="reset()"></input><br/>
+		
+	</form>
+
+	<div id="errades"></div>
+</body>
+</html>
