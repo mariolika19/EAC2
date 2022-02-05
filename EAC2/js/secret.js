@@ -24,7 +24,7 @@ function creaArray(){
  window.onload = function () {
  	
  	//Creamos el número a adivinar
-	let numAEncertar = creaArray();
+	let numAdivinar = creaArray();
 
  	//Añadimos los elementos donde insertaremos los números
 	let primer = document.getElementById("primer");
@@ -39,14 +39,14 @@ function creaArray(){
 	quart.addEventListener('dblclick', seleccion);
 
 	//Funciones de entrada y salida del ratón
-	primer.addEventListener('mouseenter', entraRatoli);
-	primer.addEventListener('mouseleave', surtRatoli);
-	segon.addEventListener('mouseenter', entraRatoli);
-	segon.addEventListener('mouseleave', surtRatoli);
-	tercer.addEventListener('mouseenter', entraRatoli);
-	tercer.addEventListener('mouseleave', surtRatoli);
-	quart.addEventListener('mouseenter', entraRatoli);
-	quart.addEventListener('mouseleave', surtRatoli);
+	primer.addEventListener('mouseenter', entraRaton);
+	primer.addEventListener('mouseleave', saleRaton);
+	segon.addEventListener('mouseenter', entraRaton);
+	segon.addEventListener('mouseleave', saleRaton);
+	tercer.addEventListener('mouseenter', entraRaton);
+	tercer.addEventListener('mouseleave', saleRaton);
+	quart.addEventListener('mouseenter', entraRaton);
+	quart.addEventListener('mouseleave', saleRaton);
 
 
 	//Evento para cuando pulsamos una tecla
@@ -78,14 +78,14 @@ function creaArray(){
 	}
 
 	//Función qcuando el ratón entra en una caja
-	function entraRatoli(e){
+	function entraRaton(e){
 		//Sobre el elemento que pasamos el ratón por encima, le añadimos la clase "sobre"	
 		let elem = e.target;
 		elem.classList.add("sobre");
 	}
 
 	//Función qcuando el ratón sale de una caja
-	function surtRatoli(e){
+	function saleRaton(e){
 		//Sobre el elemento que no pasamos el ratón por encima, le quitamos la clase "sobre"
 		let elem = e.target;
 		elem.classList.remove("sobre");
@@ -107,13 +107,13 @@ function creaArray(){
 		else if(tecla == "Enter"){
 			//Evitem que al presionar Enter sigui com si es fes un clic al botó d'Enviar
 			event.preventDefault();
-			crearIntentJQ();
+			crearIntentoJQ();
 		}	
 	}
 
 	//Función para reiniciar todo
 	function reset(){
-		numAEncertar = creaArray();
+		numAdivinar = creaArray();
 		primer.textContent = "?";
 		segon.textContent = "?";
 		tercer.textContent = "?";
@@ -250,10 +250,10 @@ function creaArray(){
 		//Comprobamos si hay números en la posicion correcta (numPosOK) o
 		//que estén pero en una posición incorrecta (numPosKO)
 		for(let i=0; i<4; i++){
-			if (numAEncertar[i] == numIntroduit[i]) {
+			if (numAdivinar[i] == numIntroduit[i]) {
 				numPosOK++;
 			} else {
-				if(numAEncertar.includes(numIntroduit[i])){
+				if(numAdivinar.includes(numIntroduit[i])){
 					numPosKO++;
 				}
 			}
@@ -273,7 +273,7 @@ function creaArray(){
 	}
 
 	//Función que crea un "intent" - JQuery
-	function crearIntentJQ(){
+	function crearIntentoJQ(){
 		let encerts = mirarAciertos();
 		let posOK = encerts[0];
 		let posKO = encerts[1];
