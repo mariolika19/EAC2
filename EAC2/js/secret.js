@@ -47,7 +47,7 @@ function creaArray(){
 	tercer.addEventListener('mouseleave', saleRaton);
 	quart.addEventListener('mouseenter', entraRaton);
 	quart.addEventListener('mouseleave', saleRaton);
-
+	
 
 	//Evento para cuando pulsamos una tecla
 	document.body.addEventListener('keydown', pulsacionTecla);
