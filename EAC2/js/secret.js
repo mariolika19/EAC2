@@ -103,9 +103,8 @@ function creaArray(){
 		if (tecla >= '0' && tecla <= '9') {
 			seleccion.textContent = tecla;
 		}
-		//Detectem l'ENTER
+		//Detectamos la tecla ENTER
 		else if(tecla == "Enter"){
-			//Evitem que al presionar Enter sigui com si es fes un clic al botó d'Enviar
 			event.preventDefault();
 			crearIntentoJQ();
 		}	
@@ -125,9 +124,7 @@ function creaArray(){
 			//Esborrem sempre el primer fill (ja que van disminuint a mesura que els esborrem)
 			barraIntents.removeChild(barraIntents.children[0]);
 		}
-
 	}
-
 
 	/********************/
 	/** EAC2: Apartat1 **/
@@ -142,9 +139,6 @@ function creaArray(){
 	/********************/
 	/** EAC2: Apartat2 **/
 	/********************/
-	//Modificamos la función 'comprovar' donde llamamos a "crearIntent"
-
-
 	//Función para comprobar los resultados
 	function comprueba(){
 		let aciertos = mirarAciertos();
@@ -152,9 +146,8 @@ function creaArray(){
 		let posKO = aciertos[1];
 		let numIntr = aciertos[2]; //Array con el número introducido
 		
-		// EAC2.Apartat2: Aquí cridem a la funció que mostrarà l'intent a la part inferior
+		// EAC2.Apartat2: Aquí llamamos a la función que nos mostrará <intent>
 		crearIntent(posOK,posKO,numIntr);
-
 	}
 
 	//Funció que crea una barra "intent" abajo
@@ -175,18 +168,18 @@ function creaArray(){
 		}
 
 		//Creamos el segundo <div>
-		let segonDiv = document.createElement('div');
+		let segundoDiv = document.createElement('div');
 		//Creamos los elementos <i> de acierto según la posición
 		for(let i=0; i<OK; i++){
 			let elem = document.createElement('i');
 			elem.classList.add('fas','fa-check-square');
-			segonDiv.appendChild(elem);
+			segundoDiv.appendChild(elem);
 		}
 		//Creamos los <i> de número correcto, pero no en su posición
 		for(let i=0; i<KO; i++){
 			let elem = document.createElement('i');
 			elem.classList.add('fas','fa-recycle');
-			segonDiv.appendChild(elem);
+			segundoDiv.appendChild(elem);
 		}
 
 		//Creamos el tercer <div> con las flechas		
@@ -201,31 +194,31 @@ function creaArray(){
 		tercerDiv.appendChild(flechaAbajo);
 
 		//Creamos el cuarto<div>
-		let quartDiv = document.createElement('div');
+		let cuartoDiv = document.createElement('div');
 		//Añadimos el signo menos
-		let signoMenos = document.createElement('i');
-		signoMenos.classList.add('fas','fa-minus-square');
-		quartDiv.appendChild(signoMenos);
+		let menosElem = document.createElement('i');
+		menosElem.classList.add('fas','fa-minus-square');
+		cuartoDiv.appendChild(menosElem);
 		//Añadimos la papelera
-		let escombreria = document.createElement('i');
-		escombreria.classList.add('fas','fa-trash');
-		quartDiv.appendChild(escombreria);
+		let basuraElem = document.createElement('i');
+		basuraElem.classList.add('fas','fa-trash');
+		cuartoDiv.appendChild(basuraElem);
 
 		
 		//EAC2.Apartat4
 		//Como este elemento se consigue en JS y se necesita pasar a JQuery, cambiamos el tipo de objeto
-		asignarBorrado($(escombreria));
+		asignarBorrado($(basuraElem));
 		//EAC2.Apartat5.1 - Con JQuery
 		asignarArriba($(flechaArriba));
 		//EAC2.Apartat5.2 - No JQuery
 		asignarAbajo(flechaAbajo);
 		//EAC2.Apartat6.1 - Con JQuery
-		asignarEsconder($(signoMenos));
+		asignarEsconder($(menosElem));
 
 		divExtern.appendChild(primerDiv);
-		divExtern.appendChild(segonDiv);
+		divExtern.appendChild(segundoDiv);
 		divExtern.appendChild(tercerDiv);
-		divExtern.appendChild(quartDiv);
+		divExtern.appendChild(cuartoDiv);
 
 		//Añadimos "intent" a la barra principal
 		barraIntents.appendChild(divExtern);
@@ -237,7 +230,7 @@ function creaArray(){
 	function mirarAciertos(){
 		let numPosOK = 0;	//Posición correcta
 		let numPosKO = 0;	//Posición incorrecta, pero número válido
-		let resultat = [];	//Array que almacena el resultado introducido
+		let resultado = [];	//Array que almacena el resultado introducido
 
 		let numIntroduit=[];	//Array que almacena los números introducidos
 
@@ -265,39 +258,40 @@ function creaArray(){
 			reset();
 		}
 
-		resultat.push(numPosOK);
-		resultat.push(numPosKO);
-		resultat.push(numIntroduit);
+		resultado.push(numPosOK);
+		resultado.push(numPosKO);
+		resultado.push(numIntroduit);
 
-		return resultat;
+		return resultado;
 	}
 
 	//Función que crea un "intent" - JQuery
 	function crearIntentoJQ(){
-		let encerts = mirarAciertos();
-		let posOK = encerts[0];
-		let posKO = encerts[1];
-		let numIntr = encerts[2]; //Array amb el número introducido
+		let aciertos = mirarAciertos();
+		let posOK = aciertos[0];
+		let posKO = aciertos[1];
+		let numIntr = aciertos[2]; //Array amb el número introducido
 		
-		//Creamos el intent sin los aciertos
-		let $intent = $('<div class="intent">\
-                    <div>\
-                        <span>'+numIntr[0]+'</span>\
-                        <span>'+numIntr[1]+'</span>\
-                        <span>'+numIntr[2]+'</span>\
-                        <span>'+numIntr[3]+'</span>\
-                    </div>\
-                    <div>\
-                    </div>\
-                    <div>\
-                        <i class="fas fa-arrow-alt-circle-up"></i>\
-                        <i class="fas fa-arrow-alt-circle-down"></i>\
-                    </div>\
-                    <div>\
-                        <i class="fas fa-minus-square"></i>\
-                        <i class="fas fa-trash"></i>\
-                    </div>\
-                </div>');
+		//Creamos intent sin los aciertos
+		let $intent = $(
+			'<div class="intent">\
+				<div>\
+					<span>'+numIntr[0]+'</span>\
+					<span>'+numIntr[1]+'</span>\
+					<span>'+numIntr[2]+'</span>\
+					<span>'+numIntr[3]+'</span>\
+				</div>\
+				<div>\
+				</div>\
+				<div>\
+					<i class="fas fa-arrow-alt-circle-up"></i>\
+					<i class="fas fa-arrow-alt-circle-down"></i>\
+				</div>\
+				<div>\
+					<i class="fas fa-minus-square"></i>\
+					<i class="fas fa-trash"></i>\
+				</div>\
+			</div>');
 		//Le añadimos los aciertos
 		for(let i=0; i<posOK;i++){
 			$intent.children().first().next().append($('<i class="fas fa-check-square"></i>'));
@@ -317,6 +311,7 @@ function creaArray(){
 
 		//Añadimos "intent" al documento
 		$('#inici').find('.intents').append($intent);
+
 	}
 
 	/********************/
@@ -328,10 +323,10 @@ function creaArray(){
 			$(this).parents('.intent').remove();
 		});
 
-		//Borrado en JS
+		// //Borrado en JS
 		// elem.addEventListener("click", function(){
 		// 	let barra = this.parentNode.parentNode;
-		// 	barra.parentNode.remove(barra);
+		// 	barra.parentNode.removeChild(barra);
 		// });
 	}
 
@@ -354,13 +349,11 @@ function creaArray(){
 	function asignarAbajo(elem){
 		elem.addEventListener('click', function(){
 			let aquestaBarra = this.parentNode.parentNode;
-			//Si no és l'últim element
+			//Si no es el último elemento
 			if(aquestaBarra.nextElementSibling){
 				let barraDeBaix = aquestaBarra.nextElementSibling;
-				//Fixeu-vos que l'hem d'afegir abans de l'element que està sota la barra de baix
 				aquestaBarra.parentNode.insertBefore(aquestaBarra,barraDeBaix.nextElementSibling);
 			}
-			
 		});
 	}
 
