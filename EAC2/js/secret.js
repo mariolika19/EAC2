@@ -74,7 +74,6 @@ function creaArray(){
 		//Sobre el elemento que se ha hecho el dobleClick, le añadimos la clase
 		let elem = e.target;
 		elem.classList.add("seleccionat");
-
 	}
 
 	//Función qcuando el ratón entra en una caja
@@ -132,7 +131,7 @@ function creaArray(){
 	//Quitamos la barra, que se encuentra dentro de "intents"
 	//Seleccionamos el elemento "intents"
 	let barraIntents = document.getElementById('inici').firstElementChild.children[3];
-	let intent = barraIntents.firstElementChild;	//Seleccionamos el primer hijo de "intents"
+	let intent = barraIntents.firstElementChild;	
 	//Borramos el elemento "intent"
 	intent.parentNode.removeChild(intent);
 
@@ -303,7 +302,7 @@ function creaArray(){
 		//EAC2.Apartat4
 		asignarBorrado($intent.find('.fa-trash'));
 		//EAC2.Apartat5.1
-		asignarArriba($intent.find('.fa-arrow-alt-circle-up'))
+		asignarArriba($intent.find('.fa-arrow-alt-circle-up'));
 		//EAC2.Apartat5.2 - Cambio a JS
 		asignarAbajo($intent.find('.fa-arrow-alt-circle-down')[0]);
 		//EAC2.Apartat6.1
